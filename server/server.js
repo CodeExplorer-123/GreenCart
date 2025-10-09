@@ -11,7 +11,6 @@ import cartRouter from "./routes/cartRoute.js";
 import addressRouter from "./routes/addressRoute.js";
 import orderRouter from "./routes/orderRoute.js";
 
-
 const app = express();
 const port = process.env.PORT || 4000;
 
@@ -19,14 +18,15 @@ await connectDB();
 await connectCloudinary();
 
 // Allow multiple origins
-const allowedOrigins = ["http://localhost:5173", ""];
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://greencart-tawny.vercel.app",
+];
 
 // Middleware configuration
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({ origin: allowedOrigins, credentials: true }));
-
-
 
 app.get("/", (req, res) => res.send("API is Working"));
 app.use("/api/user", userRouter);
