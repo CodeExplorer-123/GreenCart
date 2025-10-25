@@ -22,22 +22,21 @@ export const AppContextProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState({});
 
   // fetchSeller
-const fetchSeller = async () => {
-  try {
-    const { data } = await axios.get("/api/seller/is-auth");
-    console.log(data)
-    if (data.success) {
-      setIsSeller(true);
-    } else {
+  const fetchSeller = async () => {
+    try {
+      const { data } = await axios.get("/api/seller/is-auth");
+      console.log(data);
+      if (data.success) {
+        setIsSeller(true);
+      } else {
+        setIsSeller(false);
+      }
+    } catch (error) {
       setIsSeller(false);
     }
-  } catch (error) {
-    setIsSeller(false);
-  }
-};
+  };
 
-
-  // Fetch User Auth Status 
+  // Fetch User Auth Status
   const fetchUser = async () => {
     try {
       const { data } = await axios.get("api/user/is-auth");
